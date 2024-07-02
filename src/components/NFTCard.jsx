@@ -1,15 +1,16 @@
 import React from 'react'
 import UserProfile from "../components/UserProfile"
+import { Link } from 'react-router-dom'
 
 const NFTCard = ({image, title, userImage, name, username, price, addToCart }) => {
   return (
     <article className='flex flex-col gap-2 bg-background-secondary rounded-[20px]'>
-        <div>
+        <Link to={"#"}>
             <img className="h-auto max-w-full rounded-lg" src={image} alt={title}/>
-        </div>
+        </Link>
         <div className='p-5'>
-            <div className='flex flex-col gap-2'>
-                <h5 className="text-2xl font-bold tracking-tight text-white">{title}</h5>
+            <div to={"#"} className='flex flex-col gap-2'>
+                <h5 className="text-2xl font-bold tracking-tight text-white"><Link to={"#"}>{title}</Link></h5>
                 <UserProfile image={userImage} username={username} name={name} />
             </div>
             <div className='flex justify-between items-center'>

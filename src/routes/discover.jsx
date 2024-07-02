@@ -4,9 +4,122 @@ import Footer from "../components/Footer";
 import NFTCard from "../components/NFTCard";
 
 export default function DiscoverPage () {
-    const [categories, setCategories] = useState([])
-    const [cards, setCards] = useState([])
+    // Estas constantes son para hacer desde aqui las consultas al backend mas adelante
+    const categories = ['All categories', 'Art', 'Virtual Worlds', 'Collectibles', 'Utility', 'Gaming']
+    const cards = [
+      {
+          image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg",
+          title: "Magic Mushroom 0325",
+          userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
+          username: "Shroomie",
+          name: "Alex",
+          price: "1.63 ETH",
+          category: "Art"
+        },
+      {
+          image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg",
+          title: "Magic Mushroom 0325",
+          userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
+          username: "Shroomie",
+          name: "Alex",
+          price: "1.63 ETH",
+          category: "Art"
+        },
+      {
+          image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg",
+          title: "Magic Mushroom 0325",
+          userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
+          username: "Shroomie",
+          name: "Alex",
+          price: "1.63 ETH",
+          category: "Art"
+        },
+      {
+          image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg",
+          title: "Magic Mushroom 0325",
+          userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
+          username: "Shroomie",
+          name: "Alex",
+          price: "1.63 ETH",
+          category: "Virtual Worlds"
+        },
+      {
+          image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg",
+          title: "Magic Mushroom 0325",
+          userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
+          username: "Shroomie",
+          name: "Alex",
+          price: "1.63 ETH",
+          category: "Virtual Worlds"
+        },
+      {
+          image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg",
+          title: "Magic Mushroom 0325",
+          userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
+          username: "Shroomie",
+          name: "Alex",
+          price: "1.63 ETH",
+          category: "Virtual Worlds"
+        },
+      {
+          image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-6.jpg",
+          title: "Magic Mushroom 0325",
+          userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
+          username: "Shroomie",
+          name: "Alex",
+          price: "1.63 ETH",
+          category: "Virtual Worlds"
+        },
+      {
+          image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-7.jpg",
+          title: "Magic Mushroom 0325",
+          userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
+          username: "Shroomie",
+          name: "Alex",
+          price: "1.63 ETH",
+          category: "Collectibles"
+        },
+      {
+          image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-8.jpg",
+          title: "Magic Mushroom 0325",
+          userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
+          username: "Shroomie",
+          name: "Alex",
+          price: "1.63 ETH",
+          category: "Collectibles"
+        },
+      {
+          image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-9.jpg",
+          title: "Magic Mushroom 0325",
+          userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
+          username: "Shroomie",
+          name: "Alex",
+          price: "1.63 ETH",
+          category: "Utility"
+        },
+      {
+          image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-10.jpg",
+          title: "Magic Mushroom 0325",
+          userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
+          username: "Shroomie",
+          name: "Alex",
+          price: "1.63 ETH",
+          category: "Gaming"
+        },
+      {
+          image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-11.jpg",
+          title: "Magic Mushroom 0325",
+          userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
+          username: "Shroomie",
+          name: "Alex",
+          price: "1.63 ETH",
+          category: "Gaming"
+        },
+    ]
+    const [selectedCategory, setSelectedCategory] = useState('All categories');
+    const [filteredCards, setFilteredCards] = useState([]);
     const [search, setSearch] = useState('')
+
     // const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -17,115 +130,19 @@ export default function DiscoverPage () {
       console.log(search);
     }
     const filterNFTs = (category) => {
-        console.log(category)
+      setSelectedCategory(category)
       };
     const addToCart = (product) => {
         console.log(product)
       };
     
-    useEffect(()=> {
-        setCategories(['All categories', 'Art', 'Virtual Worlds', 'Collectibles', 'Utility', 'Gaming'])
-        setCards(
-            [
-                {
-                    image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg",
-                    title: "Magic Mushroom 0325",
-                    userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
-                    username: "Shroomie",
-                    name: "Alex",
-                    price: "1.63 ETH"
-                  },
-                {
-                    image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg",
-                    title: "Magic Mushroom 0325",
-                    userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
-                    username: "Shroomie",
-                    name: "Alex",
-                    price: "1.63 ETH"
-                  },
-                {
-                    image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg",
-                    title: "Magic Mushroom 0325",
-                    userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
-                    username: "Shroomie",
-                    name: "Alex",
-                    price: "1.63 ETH"
-                  },
-                {
-                    image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg",
-                    title: "Magic Mushroom 0325",
-                    userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
-                    username: "Shroomie",
-                    name: "Alex",
-                    price: "1.63 ETH"
-                  },
-                {
-                    image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg",
-                    title: "Magic Mushroom 0325",
-                    userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
-                    username: "Shroomie",
-                    name: "Alex",
-                    price: "1.63 ETH"
-                  },
-                {
-                    image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg",
-                    title: "Magic Mushroom 0325",
-                    userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
-                    username: "Shroomie",
-                    name: "Alex",
-                    price: "1.63 ETH"
-                  },
-                {
-                    image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-6.jpg",
-                    title: "Magic Mushroom 0325",
-                    userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
-                    username: "Shroomie",
-                    name: "Alex",
-                    price: "1.63 ETH"
-                  },
-                {
-                    image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-7.jpg",
-                    title: "Magic Mushroom 0325",
-                    userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
-                    username: "Shroomie",
-                    name: "Alex",
-                    price: "1.63 ETH"
-                  },
-                {
-                    image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-8.jpg",
-                    title: "Magic Mushroom 0325",
-                    userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
-                    username: "Shroomie",
-                    name: "Alex",
-                    price: "1.63 ETH"
-                  },
-                {
-                    image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-9.jpg",
-                    title: "Magic Mushroom 0325",
-                    userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
-                    username: "Shroomie",
-                    name: "Alex",
-                    price: "1.63 ETH"
-                  },
-                {
-                    image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-10.jpg",
-                    title: "Magic Mushroom 0325",
-                    userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
-                    username: "Shroomie",
-                    name: "Alex",
-                    price: "1.63 ETH"
-                  },
-                {
-                    image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-11.jpg",
-                    title: "Magic Mushroom 0325",
-                    userImage: "http://res.cloudinary.com/dwuv0l98b/image/upload/v1706217896/samples/man-portrait.jpg",
-                    username: "Shroomie",
-                    name: "Alex",
-                    price: "1.63 ETH"
-                  },
-            ]
-        )
-    },[])
+    useEffect(() => {
+      if (selectedCategory === 'All categories') {
+        setFilteredCards(cards);
+      } else {
+        setFilteredCards(cards.filter(card => card.category === selectedCategory));
+      }
+    }, [selectedCategory]);
     return (
         <main className="bg-background text-text min-h-screen font-primary flex flex-col gap-28">
             <section className="flex justify-between items-center py-5 px-2">
@@ -155,10 +172,12 @@ export default function DiscoverPage () {
                     </form>
                     <div className="flex flex-col justify-between w-full max-w-[1050px]">
                         <div className="flex items-center justify-center py-4 md:py-8 flex-wrap">
-                            {categories.map((categ, index)=> <button key={index} type="button" className="text-gray-900 border border-white hover:border-gray-200 bg-white focus:ring-4 focus:outline-none focus:ring-call-to-action rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3" onClick={()=> filterNFTs(categ)}>{categ}</button>)}
+                            {categories.map((categ, index)=> (
+                                <button key={index} type="button" className="text-gray-900 border border-white hover:border-gray-200 bg-white focus:ring-4 focus:outline-none focus:ring-call-to-action rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3" onClick={()=> filterNFTs(categ)}>{categ}</button>
+                            ))}
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                            {cards.map((item, index) => (
+                            {filteredCards.map((item, index) => (
                                 <NFTCard key={index+100} image={item.image} title={item.title} userImage={item.userImage} username={item.username} name={item.name} price={item.price} addToCart={addToCart} />
                             ))}
                         </div>
