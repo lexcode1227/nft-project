@@ -7,6 +7,7 @@ import LoginPage from "./routes/login";
 import RegisterPage from "./routes/register";
 import ResetPasswordPage from "./routes/resetPassword";
 import DashboardPage from "./routes/dashboard";
+import DiscoverPage from "./routes/discover";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -33,6 +34,11 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashboardPage />,
+    errorElement: <NotFoundPage/>
+  },
+  {
+    path: "/discover",
+    element: <DiscoverPage/>,
     errorElement: <NotFoundPage/>
   },
 ]);

@@ -23,50 +23,48 @@ export default function RegisterPage() {
     };
     const handleSubmit = async (event) => {
         event.preventDefault();
-        alert("Metodo para registrar usuarios funcionando")
-        console.log(formValues);
-        // try {
-        //     const res = await fetch(`${API_URL}/api/auth/register`, {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify(formValues)
-        //     })
-        //     const result = await res.json()
-        //     setFormValues({
-        //         name: '',
-        //         lastname: '',
-        //         username: '',
-        //         password: '',
-        //         email: '',
-        //       })
-        //     alert(result.message)
-        //     try {
-        //         const response = await fetch(`${API_URL}/api/auth/login`, {
-        //             method: 'POST',
-        //             headers: {
-        //                 'Content-Type': 'application/json'
-        //             },
-        //             body: JSON.stringify({username: formValues.username, password: formValues.password})
-        //         })
-        //         const result = await response.json()
+        try {
+            const res = await fetch(`${API_URL}/api/auth/register`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formValues)
+            })
+            const result = await res.json()
+            setFormValues({
+                name: '',
+                lastname: '',
+                username: '',
+                password: '',
+                email: '',
+              })
+            alert(result.message)
+            try {
+                const response = await fetch(`${API_URL}/api/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({username: formValues.username, password: formValues.password})
+                })
+                const result = await response.json()
 
-        //         if (result.token) {
-        //             const in30Minutes = 1/48; //mini calculo para reducir el tiempo de 1h a 30min
-        //             Cookies.set('authToken', result.token, { expires: in30Minutes });
+                if (result.token) {
+                    const in30Minutes = 1/48; //mini calculo para reducir el tiempo de 1h a 30min
+                    Cookies.set('authToken', result.token, { expires: in30Minutes });
     
-        //             navigate('/dashboard')
-        //         } else {
-        //             alert("Error en el login, sin Token")
-        //         }
+                    navigate('/dashboard')
+                } else {
+                    alert("Error en el login, sin Token")
+                }
                 
-        //     } catch (error) {
-        //         console.log(error.message);
-        //     }
-        // } catch (error) {
-        //     console.log(error.message);
-        // }
+            } catch (error) {
+                console.log(error.message);
+            }
+        } catch (error) {
+            console.log(error.message);
+        }
     };
     return (
         <section className="bg-gray-50">

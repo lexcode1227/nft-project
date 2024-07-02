@@ -8,29 +8,29 @@ export default function DashboardPage () {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        // Cookies.remove('authToken');
+        Cookies.remove('authToken');
         navigate('/login');
       };
 
-    // useEffect( ()=>{
-    //     const token = Cookies.get('authToken');
-    //     async function fetchData(){
-    //         const res = await fetch(`${API_URL}/api/auth/dashboard`, {
-    //             method: 'GET',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 'Authorization': `${token}`
-    //             },
-    //         })
-    //         const result = await res.json()
-    //         setUserData(result.data);
-    //     }
-    //     if (token) {
-    //         fetchData()
-    //     } else {
-    //         navigate('/')
-    //     }
-    // },[])
+    useEffect( ()=>{
+        const token = Cookies.get('authToken');
+        async function fetchData(){
+            const res = await fetch(`${API_URL}/api/auth/dashboard`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `${token}`
+                },
+            })
+            const result = await res.json()
+            setUserData(result.data);
+        }
+        if (token) {
+            fetchData()
+        } else {
+            navigate('/')
+        }
+    },[])
     return (
         <main className="p-2">
             <section className="flex justify-between items-center">

@@ -26,55 +26,51 @@ export default function LoginPage() {
     };
     const handleRecoverPass = async(e)=> {
         e.preventDefault();
-        alert("Formulario que notifica que el correo para recuperar contraseña funciona");
-        console.log(email);
-        // try {
-        //     const res = await fetch(`${API_URL}/api/auth/forgotPassword`, {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify({email})
-        //     })
-        //     const result = await res.json()
-        //     setEmail('')
-        //     if (result.message) {
-        //         // console.log(result.message)
-        //         setOpenModal(false)
-        //     }
-        // } catch (error) {
-        //     console.log(error.message);
-        // }
+        try {
+            const res = await fetch(`${API_URL}/api/auth/forgotPassword`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({email})
+            })
+            const result = await res.json()
+            setEmail('')
+            if (result.message) {
+                // console.log(result.message)
+                setOpenModal(false)
+            }
+        } catch (error) {
+            console.log(error.message);
+        }
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
-        alert("Formulario que sirve ingresar a tu cuenta");
-        console.log(formValues);
-        // try {
-        //     const res = await fetch(`${API_URL}/api/auth/login`, {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify(formValues)
-        //     })
-        //     const result = await res.json()
-        //     setFormValues({
-        //         username: '',
-        //         password: '',
-        //       })
-        //     if (result.token) {
-        //         const in30Minutes = 1/48; //mini calculo para reducir el tiempo de 1h a 30min
-        //         Cookies.set('authToken', result.token, { expires: in30Minutes });
+        try {
+            const res = await fetch(`${API_URL}/api/auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formValues)
+            })
+            const result = await res.json()
+            setFormValues({
+                username: '',
+                password: '',
+              })
+            if (result.token) {
+                const in30Minutes = 1/48; //mini calculo para reducir el tiempo de 1h a 30min
+                Cookies.set('authToken', result.token, { expires: in30Minutes });
 
-        //         navigate('/dashboard')
-        //     } else {
-        //         alert("Error en el login, sin Token")
-        //     }
+                navigate('/dashboard')
+            } else {
+                alert("Error en el login, sin Token")
+            }
             
-        // } catch (error) {
-        //     console.log(error.message);
-        // }
+        } catch (error) {
+            console.log(error.message);
+        }
     };
 
     return (
